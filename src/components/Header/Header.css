@@ -1,0 +1,37 @@
+div {
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Fuente moderna */
+  }
+  
+  li {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  li:hover {
+    cursor: pointer;
+    color: #007bff;
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 768px) {
+    ul {
+      flex-direction: column;
+    }
+  
+    li {
+      margin-bottom: 10px;
+    }
+  }
+  
