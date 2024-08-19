@@ -1,6 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
+import Tutorial from "./components/Tutorial/Tutorial";
+import Contacto from "./components/Contacto/Contacto";
+import Registro from "./components/Registro/Registro";
 
 function App() {
   return (
@@ -9,6 +12,9 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/Tutorial" element={<Tutorial />} />
+          <Route path="/Contacto" element={<Contacto />} />
+          <Route path="/Registro" element={<Registro />} />
         </Routes>
       </BrowserRouter>
     </>
