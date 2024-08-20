@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./Registro.css"; // Importa el CSS
+import { useNavigate } from "react-router-dom";
 
 const Registro = () => {
+  let navigate = useNavigate();
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -63,10 +65,13 @@ const Registro = () => {
     e.preventDefault();
     console.log(`Enviando datos... Nombre: ${data.name}, Email: ${data.email}`);
     clearState();
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
   };
 
   return (
-    <div className="form-container"> {/* Contenedor para centrar el formulario */}
+    <div className="form-container">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -87,14 +92,14 @@ const Registro = () => {
           placeholder="Contraseña"
           value={data.password}
           name="password"
-          onChange={handleInputChange}  
+          onChange={handleInputChange}
         />
         <input
           type="password"
           placeholder="Repetir Contraseña"
-          name="repeatPassword" 
+          name="repeatPassword"
           value={data.repeatPassword}
-          onChange={handleInputChange}  
+          onChange={handleInputChange}
         />
         <button type="submit" disabled={btnDisabled}>
           Enviar
