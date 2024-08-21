@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./Registro.css"; // Importa el CSS
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { register } from "../../features/auth/authSlice";
 
 const Registro = () => {
   let navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -65,6 +69,7 @@ const Registro = () => {
     e.preventDefault();
     console.log(`Enviando datos... Nombre: ${data.name}, Email: ${data.email}`);
     clearState();
+    dispatch(register(data));
     setTimeout(() => {
       navigate("/");
     }, 1000);
