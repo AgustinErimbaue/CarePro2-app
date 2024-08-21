@@ -13,6 +13,8 @@ const Registro = () => {
     email: "",
     password: "",
     repeatPassword: "",
+    phoneNumber: null,
+    address: "",
   });
 
   const [btnDisabled, setBtnDisabled] = useState(true);
@@ -23,6 +25,8 @@ const Registro = () => {
     email: "",
     password: "",
     repeatPassword: "",
+    phoneNumer: null,
+    address: "",
   };
 
   const validateForm = () => {
@@ -40,6 +44,12 @@ const Registro = () => {
       setBtnDisabled(true);
     } else if (!data.password) {
       setMessage("La contraseña es obligatoria.");
+      setBtnDisabled(true);
+    } else if (!data.address) {
+      setMessage("La direccion es obligatoria.");
+      setBtnDisabled(true);
+    } else if (!data.phoneNumber) {
+      setMessage("el numero de telefono es obligatorio.");
       setBtnDisabled(true);
     } else if (data.password.length < 6) {
       setMessage("La contraseña debe tener al menos 6 caracteres.");
@@ -92,6 +102,21 @@ const Registro = () => {
           name="email"
           onChange={handleInputChange}
         />
+        <input
+          type="text"
+          placeholder="Direccion"
+          name="address"
+          value={data.address}
+          onChange={handleInputChange}
+        />
+        <input
+          type="number"
+          placeholder="Teléfono"
+          value={data.phoneNumber}
+          name="phoneNumber" 
+          onChange={handleInputChange}
+        />
+
         <input
           type="password"
           placeholder="Contraseña"
