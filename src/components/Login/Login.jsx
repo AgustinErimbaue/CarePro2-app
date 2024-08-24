@@ -5,6 +5,8 @@ import { login } from "../../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  let navigate = useNavigate();
+
   const initialState = {
     email: "",
     password: "",
