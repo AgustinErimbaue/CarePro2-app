@@ -1,9 +1,21 @@
-import React from "react";
-import './Profile.css'
+import React, { useEffect } from "react";
+import "./Profile.css";
 import { useNavigate } from "react-router-dom";
+import { getUser } from "../../features/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Profile = () => {
-    
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth); 
+
+  useEffect(() => {
+    dispatch(getUser()); 
+  }, [dispatch]);
+
+  if (!user) {
+    return <p>Loading...</p>; 
+  }
+
   return (
     <>
       <div className="profile-container">

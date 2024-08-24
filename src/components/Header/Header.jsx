@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import './Header.css'
+import "./Header.css";
 import { useSelector } from "react-redux";
 
-const Header = ({ user }) => {
+const Header = () => {
   return (
     <div>
       <ul>
@@ -16,21 +16,12 @@ const Header = ({ user }) => {
         <li>
           <Link to="/Contacto">Contacto</Link>
         </li>
-        {/* Expresión ternaria para condicionalmente renderizar enlaces */}
-        {user ? (
-          <li>
-            <Link to="/Profile">Perfil</Link>
-          </li>
-        ) : (
-          <>
-            <li>
-              <Link to="/Login">Login</Link>
-            </li>
-            <li>
-              <Link to="/Registro">Registrarse</Link>
-            </li>
-          </>
-        )}
+        <li>
+          <Link to="/Login">Login</Link>
+        </li>
+        <li>
+          <Link to="/Registro">Registrarse</Link>
+        </li>
       </ul>
     </div>
   );
