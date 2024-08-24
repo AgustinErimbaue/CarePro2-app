@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Login.css";
 import { useDispatch } from "react-redux";
 import { login } from "../../features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const initialState = {
@@ -62,6 +63,10 @@ const Login = () => {
     } else {
       setMessage("Por favor, corrige los errores antes de enviar.");
     }
+
+    setTimeout(() => {
+      navi
+    }, 1000);
   };
 
   return (

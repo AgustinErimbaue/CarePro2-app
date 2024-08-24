@@ -5,6 +5,7 @@ import Tutorial from "./components/Tutorial/Tutorial";
 import Contacto from "./components/Contacto/Contacto";
 import Registro from "./components/Registro/Registro";
 import Login from "./components/Login/Login";
+import Profile from "./components/Profile/Profile";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/Contacto" element={<Contacto />} />
           <Route path="/Registro" element={<Registro />} />
           <Route path="/Login" element={<Login />} />
+          <Route path="/Profile" element={<Profile/>}/>
         </Routes>
       </BrowserRouter>
     </>

@@ -1,8 +1,8 @@
 import React from "react";
-import "./Header.css";
 import { Link } from "react-router-dom";
+import './Header.css'
 
-const Header = () => {
+const Header = ({ user }) => {
   return (
     <div>
       <ul>
@@ -15,10 +15,21 @@ const Header = () => {
         <li>
           <Link to="/Contacto">Contacto</Link>
         </li>
-        <li>
-          <Link to="/Login">Login</Link>
-        </li>
-        <li><Link to="/Registro">Registrarse</Link></li>
+        {/* Expresión ternaria para condicionalmente renderizar enlaces */}
+        {user ? (
+          <li>
+            <Link to="/Profile">Perfil</Link>
+          </li>
+        ) : (
+          <>
+            <li>
+              <Link to="/Login">Login</Link>
+            </li>
+            <li>
+              <Link to="/Registro">Registrarse</Link>
+            </li>
+          </>
+        )}
       </ul>
     </div>
   );
