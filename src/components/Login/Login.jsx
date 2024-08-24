@@ -67,7 +67,7 @@ const Login = () => {
     }
 
     setTimeout(() => {
-      navi
+      navigate("/Profile");
     }, 1000);
   };
 
