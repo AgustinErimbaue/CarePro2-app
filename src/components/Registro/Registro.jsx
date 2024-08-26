@@ -10,10 +10,11 @@ const Registro = () => {
 
   const [data, setData] = useState({
     name: "",
+    username: "",
     email: "",
     password: "",
     repeatPassword: "",
-    phoneNumber: null,
+    phoneNumber: "",
     address: "",
   });
 
@@ -22,10 +23,11 @@ const Registro = () => {
 
   const initialState = {
     name: "",
+    username: "",
     email: "",
     password: "",
     repeatPassword: "",
-    phoneNumer: null,
+    phoneNumber: "",
     address: "",
   };
 
@@ -36,6 +38,9 @@ const Registro = () => {
     } else if (data.name.length < 3) {
       setMessage("El nombre debe tener al menos 3 caracteres.");
       setBtnDisabled(true);
+    } else if (!data.username) {
+      setMessage("El nombre de usuario es obligatorio.");
+      setBtnDisabled(true);
     } else if (!data.email) {
       setMessage("El correo electrónico es obligatorio.");
       setBtnDisabled(true);
@@ -45,17 +50,17 @@ const Registro = () => {
     } else if (!data.password) {
       setMessage("La contraseña es obligatoria.");
       setBtnDisabled(true);
-    } else if (!data.address) {
-      setMessage("La direccion es obligatoria.");
-      setBtnDisabled(true);
-    } else if (!data.phoneNumber) {
-      setMessage("el numero de telefono es obligatorio.");
-      setBtnDisabled(true);
     } else if (data.password.length < 6) {
       setMessage("La contraseña debe tener al menos 6 caracteres.");
       setBtnDisabled(true);
     } else if (data.password !== data.repeatPassword) {
       setMessage("Las contraseñas no coinciden.");
+      setBtnDisabled(true);
+    } else if (!data.address) {
+      setMessage("La dirección es obligatoria.");
+      setBtnDisabled(true);
+    } else if (!data.phoneNumber) {
+      setMessage("El número de teléfono es obligatorio.");
       setBtnDisabled(true);
     } else {
       setMessage("");
@@ -78,8 +83,8 @@ const Registro = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(`Enviando datos... Nombre: ${data.name}, Email: ${data.email}`);
-    clearState();
     dispatch(register(data));
+    clearState();
     setTimeout(() => {
       navigate("/");
     }, 1000);
@@ -96,6 +101,13 @@ const Registro = () => {
           onChange={handleInputChange}
         />
         <input
+          type="text"
+          placeholder="Nombre de usuario"
+          value={data.username}
+          name="username"
+          onChange={handleInputChange}
+        />
+        <input
           type="email"
           placeholder="Correo Electrónico"
           value={data.email}
@@ -104,19 +116,18 @@ const Registro = () => {
         />
         <input
           type="text"
-          placeholder="Direccion"
+          placeholder="Dirección"
           name="address"
           value={data.address}
           onChange={handleInputChange}
         />
         <input
-          type="number"
+          type="text"
           placeholder="Teléfono"
           value={data.phoneNumber}
           name="phoneNumber" 
           onChange={handleInputChange}
         />
-
         <input
           type="password"
           placeholder="Contraseña"

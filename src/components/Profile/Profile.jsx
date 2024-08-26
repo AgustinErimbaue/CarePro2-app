@@ -1,21 +1,15 @@
 import React, { useEffect } from "react";
 import "./Profile.css";
-import { useNavigate } from "react-router-dom";
-import { getUser } from "../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { getLoggedUser } from "../../features/auth/authSlice";
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth); 
 
   useEffect(() => {
-    dispatch(getUser()); 
+    dispatch(getLoggedUser());
   }, [dispatch]);
-
-  if (!user) {
-    return <p>Loading...</p>; 
-  }
-
+  const { user } = useSelector((state) => state.auth);
   return (
     <>
       <div className="profile-container">
