@@ -95,7 +95,7 @@ const Registro = () => {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Nombre"
+          placeholder="Nombre Completo"
           value={data.name}
           name="name"
           onChange={handleInputChange}
