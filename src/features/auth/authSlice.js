@@ -37,26 +37,39 @@ export const getLoggedUser = createAsyncThunk(
   }
 );
 
-  export const authSlice = createSlice({
-    name: "auth",
-    initialState,
-    reducers: {},
-    extraReducers: (builder) => {
-      builder
-        .addCase(login.fulfilled, (state, action) => {
-          state.user = action.payload.user;
-          state.token = action.payload.token;
-          localStorage.setItem("user", JSON.stringify(state.user));
-        })
-        .addCase(register.fulfilled, (state, action) => {
-          state.isSuccess = true;
-          state.message = action.payload.msg;
-        })
-        .addCase(getLoggedUser.fulfilled, (state, action) => {
-          state.user = action.payload;
-          state.isLoading = false;
-          state.isSuccess = true;
-        });
-    },
-  });
-  export default authSlice.reducer;
+export const logout = createAsyncThunk("auth/logout", async () => {
+  try {
+    return await authService.logout();
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+export const authSlice = createSlice({
+  name: "auth",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(login.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        localStorage.setItem("user", JSON.stringify(state.user));
+        localStorage.setItem("token", state.token);
+      })
+      .addCase(register.fulfilled, (state, action) => {
+        state.isSuccess = true;
+        state.message = action.payload.msg;
+      })
+      .addCase(getLoggedUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.isLoading = false;
+        state.isSuccess = true;
+      })
+
+      .addCase(logout.fulfilled, (state) => {
+        (state.user = null), (state.token = null), localStorage.clear();
+      });
+  },
+});
+export default authSlice.reducer;

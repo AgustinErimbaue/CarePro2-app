@@ -1,20 +1,26 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getLoggedUser } from "../../features/auth/authSlice";
-
+import { getLoggedUser, logout } from "../../features/auth/authSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(getLoggedUser());
   }, [dispatch]);
 
   const token = localStorage.getItem("token");
 
-
   const { user } = useSelector((state) => state.auth);
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    dispatch(logout());
+    navigate("/login");
+  };
+
   return (
     <div>
       <ul>
@@ -33,7 +39,7 @@ const Header = () => {
               <Link to="/Servicios">Servicios</Link>
             </li>
             <li>
-              <button>Logout</button>
+              <button onClick={handleLogout}>Logout</button>
             </li>
           </>
         ) : (
