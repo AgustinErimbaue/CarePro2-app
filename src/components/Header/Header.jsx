@@ -7,6 +7,7 @@ import { getLoggedUser, logout } from "../../features/auth/authSlice";
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   useEffect(() => {
     dispatch(getLoggedUser());
   }, [dispatch]);
@@ -33,11 +34,17 @@ const Header = () => {
         <li>
           <Link to="/Contacto">Contacto</Link>
         </li>
-        {token ? (
+        {token && user ? (
           <>
-            <li>
-              <Link to="/Servicios">Servicios</Link>
-            </li>
+            {user.isServiceProvider ? (
+              <li>
+                <Link to="/MisServicios">Mis Servicios</Link>
+              </li>
+            ) : (
+              <li>
+                <Link to="/Servicios">Servicios</Link>
+              </li>
+            )}
             <li>
               <button onClick={handleLogout}>Logout</button>
             </li>
@@ -56,4 +63,5 @@ const Header = () => {
     </div>
   );
 };
+
 export default Header;
