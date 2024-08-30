@@ -20,7 +20,6 @@ const Profile = () => {
         <div className="info">
           <div className="name-user">
             <h3>{user?.name || "Name"}</h3>
-            <h3>{user?.surname || "Surname"}</h3>
           </div>
           <div className="rate-user">
             {Array.from({ length: 5 }, (_, index) => (
