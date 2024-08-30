@@ -6,9 +6,9 @@ import Contacto from "./components/Contacto/Contacto";
 import Registro from "./components/Registro/Registro";
 import Login from "./components/Login/Login";
 import Profile from "./components/Profile/Profile";
-
+import Service from "./components/Service/Service";
+import myService from "./components/myService/myService";
 function App() {
-  
   return (
     <>
       <BrowserRouter>
@@ -19,7 +19,9 @@ function App() {
           <Route path="/Contacto" element={<Contacto />} />
           <Route path="/Registro" element={<Registro />} />
           <Route path="/Login" element={<Login />} />
-          <Route path="/Profile" element={<Profile/>}/>
+          <Route path="/Profile" element={<Profile />} />
+          <Route path="/Service" element={<Service />} />
+          <Route path="MyService" element={<myService />} />
         </Routes>
       </BrowserRouter>
     </>
