@@ -6,6 +6,7 @@ const MyServiceForm = () => {
   const [data, setData] = useState(initialState);
   const handleInputChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
+    
   };
 
   return (
