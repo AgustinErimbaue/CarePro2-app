@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "./Registro.css"; // Importa el CSS
+import "./Registro.css"; 
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { register } from "../../features/auth/authSlice";
 
 const Registro = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [data, setData] = useState({

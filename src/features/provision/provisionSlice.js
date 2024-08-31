@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import provisionService from "./provisionServiceService";
+import provisionService from "./provisionService";
 
 const initialState = {
   service: null,

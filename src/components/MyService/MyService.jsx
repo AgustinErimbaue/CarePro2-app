@@ -1,9 +1,17 @@
-import React from 'react'
-import MyServiceForm from '../MyServiceForm/myServiceform'
-const MyService = () => {
-  return (
-  <MyServiceForm/>
-  )
-}
+import React from "react";
+import MyServiceForm from "../MyServiceForm/myServiceform";
 
-export default MyService
+
+const MyService = () => {
+  
+
+  return (
+    <>
+      <div className="form-container">
+        <MyServiceForm />
+      </div>
+    </>
+  );
+};
+
+export default MyService;
