@@ -38,7 +38,7 @@ const Header = () => {
           <>
             {user.isServiceProvider ? (
               <li>
-                <Link to="/MisServicios">Mis Servicios</Link>
+                <Link to="/MyService">Mis Servicios</Link>
               </li>
             ) : (
               <li>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const myServiceform = () => {
+const MyServiceForm = () => {
   const initialState = { title: "", description: "", price: 0, category: "" };
 
   const [data, setData] = useState(initialState);
@@ -43,4 +43,4 @@ const myServiceform = () => {
   );
 };
 
-export default myServiceform;
+export default MyServiceForm;

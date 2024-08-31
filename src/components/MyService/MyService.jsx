@@ -1,9 +1,9 @@
 import React from 'react'
-
-const myService = () => {
+import MyServiceForm from '../MyServiceForm/myServiceform'
+const MyService = () => {
   return (
-    <></>
+  <MyServiceForm/>
   )
 }
 
-export default myService
+export default MyService
