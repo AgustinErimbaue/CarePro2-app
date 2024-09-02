@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import provisionService from "./provisionService";
+import authService from "./provisionService";
 
 const initialState = {
   service: null,
@@ -19,6 +20,17 @@ export const createService = createAsyncThunk(
       return thunkAPI.rejectWithValue(
         error.response ? error.response.data : error.message
       );
+    }
+  }
+);
+
+export const updateService = createAsyncThunk(
+  "prov/updateService",
+  async ({ _id, formData }) => {
+    try {
+      return await authService.updateService(_id, formData);
+    } catch (error) {
+      console.error(error);
     }
   }
 );
@@ -52,6 +64,11 @@ export const provSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload || "Failed to create service";
+      })
+      .addCase(updateService.fulfilled, (state, action) => {
+        state.service = action.payload;
+        state.isSuccess = true;
+        state.isError = false;
       });
   },
 });

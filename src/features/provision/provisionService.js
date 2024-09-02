@@ -11,8 +11,17 @@ const createService = async (service) => {
   return res.data;
 };
 
+const updateService = async (_id,formData) => {
+  const token = localStorage.getItem("token");
+  const res = await axios.put(`${API_URL}/services/updateService/${_id}`,formData, {
+    headers: { Authorization: token },
+  });
+  return res.data 
+};
+
 const authService = {
   createService,
+  updateService
 };
 
 export default authService;
