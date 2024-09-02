@@ -46,6 +46,9 @@ const Header = () => {
               </li>
             )}
             <li>
+              <Link to="/Profile">Perfil</Link>
+            </li>
+            <li>
               <button onClick={handleLogout}>Logout</button>
             </li>
           </>
