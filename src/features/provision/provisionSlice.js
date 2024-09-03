@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import provisionService from "./provisionService";
-import authService from "./provisionService";
 
 const initialState = {
+  services: [], 
   service: null,
   isLoading: false,
   isSuccess: false,
@@ -26,11 +26,28 @@ export const createService = createAsyncThunk(
 
 export const updateService = createAsyncThunk(
   "prov/updateService",
-  async ({ _id, formData }) => {
+  async ({ _id, formData }, thunkAPI) => {
     try {
-      return await authService.updateService(_id, formData);
+      const response = await provisionService.updateService(_id, formData);
+      return response;
     } catch (error) {
-      console.error(error);
+      return thunkAPI.rejectWithValue(
+        error.response ? error.response.data : error.message
+      );
+    }
+  }
+);
+
+export const getUserServices = createAsyncThunk(
+  "prov/getUserServices",
+  async (_, thunkAPI) => {
+    try {
+      const response = await provisionService.getUserServices();
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response ? error.response.data : error.message
+      );
     }
   }
 );
@@ -41,6 +58,7 @@ export const provSlice = createSlice({
   reducers: {
     reset: (state) => {
       state.service = null;
+      state.services = [];
       state.isLoading = false;
       state.isSuccess = false;
       state.isError = false;
@@ -51,9 +69,6 @@ export const provSlice = createSlice({
     builder
       .addCase(createService.pending, (state) => {
         state.isLoading = true;
-        state.isSuccess = false;
-        state.isError = false;
-        state.message = "";
       })
       .addCase(createService.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -65,10 +80,33 @@ export const provSlice = createSlice({
         state.isError = true;
         state.message = action.payload || "Failed to create service";
       })
+      // Update Service
+      .addCase(updateService.pending, (state) => {
+        state.isLoading = true;
+      })
       .addCase(updateService.fulfilled, (state, action) => {
-        state.service = action.payload;
+        state.isLoading = false;
         state.isSuccess = true;
-        state.isError = false;
+        state.service = action.payload;
+      })
+      .addCase(updateService.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload || "Failed to update service";
+      })
+      
+      .addCase(getUserServices.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getUserServices.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.services = action.payload;
+      })
+      .addCase(getUserServices.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload || "Failed to fetch user services";
       });
   },
 });
