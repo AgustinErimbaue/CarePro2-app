@@ -11,17 +11,32 @@ const createService = async (service) => {
   return res.data;
 };
 
-const updateService = async (_id,formData) => {
+const updateService = async (_id, formData) => {
   const token = localStorage.getItem("token");
-  const res = await axios.put(`${API_URL}/services/updateService/${_id}`,formData, {
-    headers: { Authorization: token },
+  const res = await axios.put(
+    `${API_URL}/services/updateService/${_id}`,
+    formData,
+    {
+      headers: { Authorization: token },
+    }
+  );
+  return res.data;
+};
+
+const getUserServices = async () => {
+  const token = localStorage.getItem("token");
+  const res = await axios.get(`${API_URL}/services/service`, {
+    headers: {
+      Authorization: token,
+    },
   });
-  return res.data 
+  return res.data
 };
 
 const authService = {
   createService,
-  updateService
+  updateService,
+  getUserServices
 };
 
 export default authService;
