@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import provisionService from "./provisionService";
 
 const initialState = {
-  services: [], 
+  services: [],
   service: null,
   isLoading: false,
   isSuccess: false,
@@ -52,6 +52,19 @@ export const getUserServices = createAsyncThunk(
   }
 );
 
+export const getAllServices = createAsyncThunk(
+  "prov/getAllServices",
+  async (_, thunkAPI) => { // Se agrega "_" para indicar que no se pasa un argumento.
+    try {
+      const res = await provisionService.getAllServices();
+      return res;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response ? error.response.data : error.message
+      );
+    }
+  }
+);
 export const provSlice = createSlice({
   name: "prov",
   initialState,
@@ -80,7 +93,6 @@ export const provSlice = createSlice({
         state.isError = true;
         state.message = action.payload || "Failed to create service";
       })
-      // Update Service
       .addCase(updateService.pending, (state) => {
         state.isLoading = true;
       })
@@ -94,7 +106,7 @@ export const provSlice = createSlice({
         state.isError = true;
         state.message = action.payload || "Failed to update service";
       })
-      
+
       .addCase(getUserServices.pending, (state) => {
         state.isLoading = true;
       })
@@ -107,6 +119,11 @@ export const provSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload || "Failed to fetch user services";
+      })
+      .addCase(getAllServices.fulfilled, (state, action) => {
+        state.services = action.payload; 
+        state.isLoading = false;
+        state.isSuccess = true;
       });
   },
 });

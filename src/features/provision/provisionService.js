@@ -36,10 +36,23 @@ const getUserServices = async () => {
   return res.data;
 };
 
+const getAllServices = async () => {
+  const token = localStorage.getItem("token");
+  if (!token) throw new Error("No token found");
+
+  const res = await axios.get(`${API_URL}/services/allServices`, {
+    headers: {
+      Authorization: token,
+    },
+  });
+  return res.data
+};
+
 const authService = {
   createService,
   updateService,
   getUserServices,
+  getAllServices
 };
 
 export default authService;
