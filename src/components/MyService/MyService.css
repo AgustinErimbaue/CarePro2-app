@@ -1,51 +1,12 @@
 .services-container {
-    display: flex;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
-    flex-wrap: wrap; 
-    justify-content: center; 
-    gap: 20px;
-    max-width: 800px; 
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .service-item {
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
-    width: 250px; 
-    text-align: center;
-  }
-  
-  .service-item:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .service-item h3 {
-    margin: 0;
-    color: #333;
-    font-size: 1.5rem;
-  }
-  
-  .service-item h5 {
-    margin: 10px 0;
-    color: #666;
-    font-size: 1.1rem;
-  }
-  
-  .service-item p {
-    margin: 0;
-    color: #333;
-    font-size: 1.2rem;
-    font-weight: bold;
-  }
-  
-  p {
-    color: #999;
-    text-align: center;
-    font-size: 1rem;
-    margin-top: 20px;
-  }
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 20px;
+  max-width: 800px; 
+  margin-left: auto;
+  margin-right: auto;
+}
+
