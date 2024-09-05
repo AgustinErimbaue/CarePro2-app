@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { createService } from "../../features/provision/provisionSlice";
+import {
+  createService,
+  updateService,
+} from "../../features/provision/provisionSlice";
 
 const MyServiceForm = () => {
   const navigate = useNavigate();
@@ -23,7 +26,8 @@ const MyServiceForm = () => {
   const validate = () => {
     let tempErrors = {};
     if (!data.title) tempErrors.title = "El título es obligatorio";
-    if (!data.description) tempErrors.description = "La descripción es obligatoria";
+    if (!data.description)
+      tempErrors.description = "La descripción es obligatoria";
     if (data.price <= 0) tempErrors.price = "El precio debe ser mayor que 0";
     if (!data.category) tempErrors.category = "La categoría es obligatoria";
 
@@ -37,8 +41,13 @@ const MyServiceForm = () => {
       console.log(`Se creó el servicio`);
       dispatch(createService(data));
       clearState();
-
     }
+  };
+
+  const editInfo = (e) => {
+    e.preventDefault();
+    setData(initialState);
+    dispatch(updateService(data));
   };
 
   return (
@@ -61,7 +70,9 @@ const MyServiceForm = () => {
           name="description"
           onChange={handleInputChange}
         />
-        {errors.description && <span style={{ color: "red" }}>{errors.description}</span>}
+        {errors.description && (
+          <span style={{ color: "red" }}>{errors.description}</span>
+        )}
       </div>
       <div>
         <input
@@ -81,7 +92,9 @@ const MyServiceForm = () => {
           name="category"
           onChange={handleInputChange}
         />
-        {errors.category && <span style={{ color: "red" }}>{errors.category}</span>}
+        {errors.category && (
+          <span style={{ color: "red" }}>{errors.category}</span>
+        )}
       </div>
       <button type="submit" onClick={handleSubmit}>
         Agregar servicio

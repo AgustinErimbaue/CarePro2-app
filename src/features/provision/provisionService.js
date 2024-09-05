@@ -45,14 +45,15 @@ const getAllServices = async () => {
       Authorization: token,
     },
   });
-  return res.data
+  return res.data;
 };
+
 
 const authService = {
   createService,
   updateService,
   getUserServices,
-  getAllServices
+  getAllServices,
 };
 
 export default authService;
