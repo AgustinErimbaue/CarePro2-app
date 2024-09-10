@@ -26,7 +26,7 @@ export const createService = createAsyncThunk(
 
 export const updateService = createAsyncThunk(
   "prov/updateService",
-  async ({ _id, formData }, thunkAPI) => {
+  async ({ _id, formData }) => {
     try {
       const response = await provisionService.updateService(_id, formData);
       return response;

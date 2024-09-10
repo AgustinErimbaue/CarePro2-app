@@ -1,10 +1,11 @@
 .form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
   }
-  
+
   form {
     background-color: #ffffff;
     padding: 20px;

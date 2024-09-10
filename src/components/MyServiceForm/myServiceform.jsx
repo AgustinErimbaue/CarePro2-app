@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import {
-  createService,
-  updateService,
-} from "../../features/provision/provisionSlice";
+import { createService } from "../../features/provision/provisionSlice";
 
 const MyServiceForm = () => {
   const navigate = useNavigate();
@@ -44,11 +41,7 @@ const MyServiceForm = () => {
     }
   };
 
-  const editInfo = (e) => {
-    e.preventDefault();
-    setData(initialState);
-    dispatch(updateService(data));
-  };
+  
 
   return (
     <form>
