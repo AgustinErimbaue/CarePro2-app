@@ -139,10 +139,10 @@ const MyService = () => {
 
       {selectedServiceDelete && (
         <div>
-          <button onClick={handleDeleteService}>
+          <button className="confirm-delete-button" onClick={handleDeleteService}>
             Confirmar eliminación
           </button>
-          <button onClick={() => setSelectedServiceDelete(null)}>
+          <button className="cancel-delete-button" onClick={() => setSelectedServiceDelete(null)}>
             Cancelar eliminación
           </button>
         </div>
