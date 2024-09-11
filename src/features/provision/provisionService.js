@@ -13,14 +13,11 @@ const createService = async (service) => {
 
 const updateService = async (_id, formData) => {
   const token = localStorage.getItem("token");
-  console.log("Token a enviar:", token); 
-  console.log("Form data a enviar:", formData);  
-
   const res = await axios.put(
     `${API_URL}/services/updateService/${_id}`,
     formData,
     {
-      headers: { Authorization: token },  
+      headers: { Authorization: token },
     }
   );
   return res.data;
@@ -42,7 +39,6 @@ const getUserServices = async () => {
 const getAllServices = async () => {
   const token = localStorage.getItem("token");
 
-  
   if (!token) throw new Error("No token found");
 
   const res = await axios.get(`${API_URL}/services/allServices`, {
@@ -53,11 +49,23 @@ const getAllServices = async () => {
   return res.data;
 };
 
+const deleteService = async (_id) => {
+  const token = localStorage.getItem("token");
+
+  const res = await axios.delete(`${API_URL}/services/deleteService/${_id}`, {
+    headers: {
+      Authorization: token,
+    },
+  });
+  return res.data
+};
+
 const authService = {
   createService,
   updateService,
   getUserServices,
   getAllServices,
+  deleteService,
 };
 
 export default authService;

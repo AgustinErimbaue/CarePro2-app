@@ -54,7 +54,7 @@ export const getUserServices = createAsyncThunk(
 
 export const getAllServices = createAsyncThunk(
   "prov/getAllServices",
-  async (_, thunkAPI) => { // Se agrega "_" para indicar que no se pasa un argumento.
+  async (_, thunkAPI) => {
     try {
       const res = await provisionService.getAllServices();
       return res;
@@ -65,6 +65,21 @@ export const getAllServices = createAsyncThunk(
     }
   }
 );
+
+export const deleteService = createAsyncThunk(
+  "prov/deleteService",
+  async (_id) => {
+    try {
+      const res = await provisionService.deleteService(_id);
+      return res;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response ? error.response.data : error.message
+      );
+    }
+  }
+);
+
 export const provSlice = createSlice({
   name: "prov",
   initialState,
@@ -121,9 +136,24 @@ export const provSlice = createSlice({
         state.message = action.payload || "Failed to fetch user services";
       })
       .addCase(getAllServices.fulfilled, (state, action) => {
-        state.services = action.payload; 
+        state.services = action.payload;
         state.isLoading = false;
         state.isSuccess = true;
+      })
+      .addCase(deleteService.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteService.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.services = state.services.filter(
+          (service) => service._id !== action.payload
+        );
+      })
+      .addCase(deleteService.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload || "Failed to delete service";
       });
   },
 });

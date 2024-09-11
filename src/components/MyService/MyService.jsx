@@ -4,6 +4,7 @@ import "./MyService.css";
 import {
   getUserServices,
   updateService,
+  deleteService,
 } from "../../features/provision/provisionSlice";
 import editarArchivo from "../../assets/editar-archivo.png";
 import MyServiceForm from "../MyServiceForm/MyServiceForm";
@@ -27,12 +28,29 @@ const MyService = () => {
   }, [dispatch, user]);
 
   const editService = (service) => {
-    setSelectedService(service); 
+    setSelectedService(service);
     setFormData({
       title: service.title,
       description: service.description,
       price: service.price,
     });
+  };
+
+  const selectServiceToDelete = (service) => {
+    // Aquí podrías mostrar un modal de confirmación si lo deseas
+    setSelectedService(service);
+  };
+
+  const handleDeleteService = () => {
+    if (selectedService) {
+      dispatch(deleteService(selectedService._id))
+        .then(() => {
+          dispatch(getUserServices());
+        })
+        .finally(() => {
+          setSelectedService(null); // Limpia el estado de selección después de la eliminación
+        });
+    }
   };
 
   const handleChange = (e) => {
@@ -44,10 +62,16 @@ const MyService = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(updateService({ _id: selectedService._id, formData })).then(() => {
-      dispatch(getUserServices()); 
-      setSelectedService(null); 
-    });
+    if (validate()) {
+      dispatch(updateService({ _id: selectedService._id, formData }))
+        .then(() => {
+          dispatch(getUserServices());
+        })
+        .finally(() => {
+          setSelectedService(null); // Limpia el estado de selección después de la actualización
+          clearState(); // Limpia el estado de formulario si es necesario
+        });
+    }
   };
 
   return (
@@ -81,7 +105,10 @@ const MyService = () => {
               placeholder="Service Price"
             />
             <button type="submit">Save Changes</button>
-            <button type="button" onClick={() => setSelectedService(null)}>
+            <button
+              type="button"
+              onClick={() => setSelectedService(null)}
+            >
               Cancel
             </button>
           </form>
@@ -98,13 +125,28 @@ const MyService = () => {
               <button onClick={() => editService(service)}>
                 <img src={editarArchivo} alt="Editar" />
               </button>
-              <button>Eliminar</button>
+              <button
+                onClick={() => selectServiceToDelete(service)}
+              >
+                Eliminar
+              </button>
             </div>
           ))
         ) : (
           <p>No services found.</p>
         )}
       </div>
+
+      {selectedService && (
+        <div>
+          <button onClick={handleDeleteService}>
+            Confirmar eliminación
+          </button>
+          <button onClick={() => setSelectedService(null)}>
+            Cancelar eliminación
+          </button>
+        </div>
+      )}
     </>
   );
 };

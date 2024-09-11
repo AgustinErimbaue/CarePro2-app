@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { createService } from "../../features/provision/provisionSlice";
+import { createService,getUserServices } from "../../features/provision/provisionSlice";
 
 const MyServiceForm = () => {
   const navigate = useNavigate();
@@ -36,8 +36,13 @@ const MyServiceForm = () => {
     e.preventDefault();
     if (validate()) {
       console.log(`Se creó el servicio`);
-      dispatch(createService(data));
-      clearState();
+      dispatch(createService(data))
+        .then(() => {
+          dispatch(getUserServices()); 
+        })
+        .finally(() => {
+          clearState(); 
+        });
     }
   };
 
