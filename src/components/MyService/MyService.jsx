@@ -104,12 +104,12 @@ const MyService = () => {
               onChange={handleChange}
               placeholder="Service Price"
             />
-            <button type="submit">Save Changes</button>
+            <button type="submit">Guardar cambios</button>
             <button
               type="button"
               onClick={() => setSelectedService(null)}
             >
-              Cancel
+              Cancelar
             </button>
           </form>
         )}
