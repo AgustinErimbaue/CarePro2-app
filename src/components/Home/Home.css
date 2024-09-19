@@ -27,7 +27,7 @@
     font-size: 18px;
     border: none;
     border-radius: 5px;
-    text-decoration: none; /* Quitar el subrayado de los enlaces */
+    text-decoration: none; 
     cursor: pointer;
     display: inline-block;
     text-align: center;
