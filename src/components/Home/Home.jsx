@@ -2,7 +2,9 @@ import React from "react";
 import "./Home.css";
 import limpieza from "../../assets/limpieza-de-hogar.jpeg";
 import cuidado from "../../assets/cuidado-perro.jpeg";
-import paseo from "../../assets/paseo-perro.jpeg"
+import paseo from "../../assets/paseo-perro.jpeg";
+import { Link } from "react-router-dom";
+
 const Home = () => {
   return (
     <div>
@@ -12,7 +14,11 @@ const Home = () => {
           Conecta con profesionales confiables en tu área para limpieza, cuidado
           de mascotas y más.
         </p>
-        <button className="cta-button">Explorar Servicios</button>
+        <button>
+          <Link className="cta-button" to="/Service">
+            Explorar Servicios
+          </Link>
+        </button>
       </div>
       <div className="services-section">
         <h2>Nuestros Servicios</h2>
