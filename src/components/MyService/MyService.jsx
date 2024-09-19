@@ -118,7 +118,7 @@ const MyService = () => {
       <div className="services-container">
         {services && services.length > 0 ? (
           services.map((service) => (
-            <div key={service._id} className="service-item">
+            <div key={service._id} className="service-items">
               <h3>{service.title}</h3>
               <h5>{service.description}</h5>
               <p>${service.price}</p>
