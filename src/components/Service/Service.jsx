@@ -27,19 +27,23 @@ const Service = () => {
   return (
     <>
       <div>
-        <h2>¡Estos servicios hay para ti!</h2>
+        <h2 className="services-heading">¡Estos servicios hay para ti!</h2>
       </div>
-      <div>
-        <ul>
+      <div className="services-list-container">
+        <ul className="services-list">
           {services.map((service) => (
-            <li key={service._id}>
-              <h4>{service.title}</h4>
-              <h6>{service.description}</h6>
-              <p>${service.price}</p>
+            <li key={service._id} className="service-item">
+              <h4 className="service-title">{service.title}</h4>
+              <h6 className="service-description">{service.description}</h6>
+              <p className="service-price">${service.price}</p>
               {serviceSelected && serviceSelected._id === service._id ? (
-                <button onClick={handleHireService}>Confirmar</button>
+                <button className="confirm-button" onClick={handleHireService}>
+                  Confirmar
+                </button>
               ) : (
-                <button onClick={() => selectedService(service)}>Contratar</button>
+                <button className="hire-button" onClick={() => selectedService(service)}>
+                  Contratar
+                </button>
               )}
             </li>
           ))}
