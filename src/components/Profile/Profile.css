@@ -3,14 +3,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 300px;
+  width: 350px; 
   margin: 50px auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #f9f9f9;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-family: YourFontFamily, sans-serif; /* Reemplaza con tu fuente */
+  font-family: YourFontFamily, sans-serif; 
 }
 
 .info-container {
@@ -44,13 +44,8 @@
   margin: 10px 0;
 }
 
-.filled-star {
-  color: gold;
-  font-size: 20px;
-}
-
+.filled-star,
 .empty-star {
-  color: lightgray;
   font-size: 20px;
 }
 
@@ -62,4 +57,60 @@
 
 .extra-info p strong {
   color: #333;
+}
+
+.my-service {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%; 
+}
+
+.service-title {
+  font-size: 22px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.service-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.service-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  transition: background-color 0.3s;
+  min-height: 100px;
+}
+
+.service-item:hover {
+  background-color: #f7f7f7;
+}
+
+.service-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.service-description {
+  font-size: 14px;
+  color: #7f8c8d;
+}
+
+.service-price {
+  font-size: 16px;
+  color: #27ae60;
+}
+
+.service-date {
+  font-size: 14px;
+  color: #7f8c8d;
 }

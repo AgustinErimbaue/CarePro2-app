@@ -2,15 +2,20 @@ import React, { useEffect } from "react";
 import "./Profile.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getLoggedUser } from "../../features/auth/authSlice";
+import { getUserProfile } from "../../features/contract/contractSlice";
 
 const Profile = () => {
   const { user } = useSelector((state) => state.auth);
-
+  const { contract } = useSelector((state) => state.contract);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getLoggedUser());
+    if (user.isServiceProvider === false) {
+      dispatch(getUserProfile());
+    }
   }, [dispatch]);
+
   return (
     <div className="profile-container">
       <h1>Perfil</h1>
@@ -50,7 +55,34 @@ const Profile = () => {
             </p>
           </div>
         </div>
-        <div className="contracted-service"></div>
+        {user.isServiceProvider === false ? (
+          <>
+            <div className="my-service">
+              <h2 className="service-title">Servicios Contratados</h2>
+              {contract && contract.length > 0 ? (
+                <ul className="service-list">
+                  {contract.map((c) => (
+                    <li key={c._id} className="service-item">
+                      <h3 className="service-name">{c.service.title}</h3>
+                      <p className="service-description">
+                        {c.service.description}
+                      </p>
+                      <p className="service-price">
+                        Precio: ${c.service.price}
+                      </p>
+                      <p className="service-date">
+                        Fecha de Inicio:{" "}
+                        {new Date(c.startDate).toLocaleDateString()}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p>No tienes servicios contratados.</p>
+              )}
+            </div>
+          </>
+        ) : null}{" "}
       </div>
     </div>
   );
