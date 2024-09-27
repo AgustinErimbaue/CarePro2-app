@@ -45,6 +45,18 @@ export const logout = createAsyncThunk("auth/logout", async () => {
   }
 });
 
+export const uploadProfileImage = createAsyncThunk(
+  "auth/uploadProfileImage",
+  async (file, thunkAPI) => {
+    try {
+      const response = await authService.uploadProfileImage(file);
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -69,6 +81,23 @@ export const authSlice = createSlice({
 
       .addCase(logout.fulfilled, (state) => {
         (state.user = null), (state.token = null), localStorage.clear();
+      })
+
+      .addCase(uploadProfileImage.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(uploadProfileImage.fulfilled, (state, action) => {
+        if (state.user) {
+          state.user.profileImage = action.payload.profileImage; 
+          localStorage.setItem("user", JSON.stringify(state.user)); 
+        }
+        state.isLoading = false;
+        state.isSuccess = true;
+      })
+      .addCase(uploadProfileImage.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.error = action.payload;
       });
   },
 });
