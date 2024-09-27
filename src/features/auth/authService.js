@@ -48,12 +48,32 @@ const logout = async () => {
   return res.data;
 };
 
+const uploadProfileImage = async (file) => {
+  const token = localStorage.getItem("token");
+
+  if (!file) {
+    throw new Error("No file provided");
+  }
+
+  const formData = new FormData();
+  formData.append("profileImage", file); 
+
+  const res = await axios.put(`${API_URL}/users/uploadProfileImage`, formData, {
+    headers: {
+      Authorization: token, 
+      "Content-Type": "multipart/form-data", 
+    },
+  });
+
+  return res.data;
+};
 
 const authService = {
   register,
   login,
   getLoggedUser,
   logout,
+  uploadProfileImage
 };
 
 export default authService;
