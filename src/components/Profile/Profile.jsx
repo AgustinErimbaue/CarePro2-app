@@ -1,13 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getLoggedUser } from "../../features/auth/authSlice";
+import {
+  getLoggedUser,
+  uploadProfileImage,
+} from "../../features/auth/authSlice";
 import { getUserProfile } from "../../features/contract/contractSlice";
 
 const Profile = () => {
   const { user } = useSelector((state) => state.auth);
   const { contract } = useSelector((state) => state.contract);
   const dispatch = useDispatch();
+  const [selectedFile, setSelectedFile] = useState(null);
 
   useEffect(() => {
     dispatch(getLoggedUser());
@@ -16,15 +20,31 @@ const Profile = () => {
     }
   }, [dispatch]);
 
+  // Maneja la selección de archivo
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+
+  // Maneja la subida de la imagen
+  const handleUpload = () => {
+    if (selectedFile) {
+      dispatch(uploadProfileImage(selectedFile)); 
+    }
+  };
+
   return (
     <div className="profile-container">
       <h1>Perfil</h1>
       <div className="info-container">
         <div className="img-profile">
           <img
-            src={user?.profilePicture || "default-profile.png"}
+            src={`http://localhost:8080/${user.profileImage}`}
             alt="Profile"
           />
+
+         
+          <input type="file" onChange={handleFileChange} />
+          <button onClick={handleUpload}>Subir nueva imagen</button>
         </div>
         <div className="info">
           <div className="name-user">
