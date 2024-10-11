@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Registro.css"; 
+import "./Registro.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { register } from "../../features/auth/authSlice";
@@ -16,6 +16,7 @@ const Registro = () => {
     repeatPassword: "",
     phoneNumber: "",
     address: "",
+    isServiceProvider: false, // Valor booleano inicial
   });
 
   const [btnDisabled, setBtnDisabled] = useState(true);
@@ -29,6 +30,7 @@ const Registro = () => {
     repeatPassword: "",
     phoneNumber: "",
     address: "",
+    isServiceProvider: false, // Iniciar como booleano
   };
 
   const validateForm = () => {
@@ -77,12 +79,20 @@ const Registro = () => {
   };
 
   const handleInputChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
+    const { name, value, type, checked } = e.target;
+    setData({
+      ...data,
+      [name]: type === "checkbox" ? checked : value, // Manejar checkbox correctamente
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(`Enviando datos... Nombre: ${data.name}, Email: ${data.email}`);
+    console.log(
+      `Enviando datos... Nombre: ${data.name}, Email: ${data.email}, ¿Ofrecer servicio?: ${data.isServiceProvider}`
+    );
+
+    // Aquí ya estamos enviando el dato como booleano
     dispatch(register(data));
     clearState();
     setTimeout(() => {
@@ -125,7 +135,7 @@ const Registro = () => {
           type="text"
           placeholder="Teléfono"
           value={data.phoneNumber}
-          name="phoneNumber" 
+          name="phoneNumber"
           onChange={handleInputChange}
         />
         <input
@@ -142,6 +152,18 @@ const Registro = () => {
           value={data.repeatPassword}
           onChange={handleInputChange}
         />
+
+        <div className="checkbox-container">
+          <input
+            type="checkbox"
+            id="isServiceProvider"
+            name="isServiceProvider"
+            checked={data.isServiceProvider}
+            onChange={handleInputChange}
+          />
+          <label htmlFor="isServiceProvider">¿Ofrecerás servicios?</label>
+        </div>
+
         <button type="submit" disabled={btnDisabled}>
           Enviar
         </button>

@@ -7,6 +7,7 @@ const initialState = {
   isLoading: false,
   isSuccess: false,
   error: null,
+  isServiceProvider: false,
 };
 
 export const register = createAsyncThunk("auth/register", async (user) => {
@@ -75,6 +76,7 @@ export const authSlice = createSlice({
       .addCase(register.fulfilled, (state, action) => {
         state.isSuccess = true;
         state.message = action.payload.msg;
+        state.isServiceProvider = action.payload.isServiceProvider;
       })
       .addCase(getLoggedUser.fulfilled, (state, action) => {
         state.user = action.payload;
@@ -96,8 +98,8 @@ export const authSlice = createSlice({
       })
       .addCase(uploadProfileImage.fulfilled, (state, action) => {
         if (state.user) {
-          state.user.profileImage = action.payload.profileImage; 
-          localStorage.setItem("user", JSON.stringify(state.user)); 
+          state.user.profileImage = action.payload.profileImage;
+          localStorage.setItem("user", JSON.stringify(state.user));
         }
         state.isLoading = false;
         state.isSuccess = true;

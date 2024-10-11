@@ -48,7 +48,7 @@ const MyService = () => {
           dispatch(getUserServices());
         })
         .finally(() => {
-          setSelectedServiceDelete(null); 
+          setSelectedServiceDelete(null);
         });
     }
   };
@@ -62,16 +62,15 @@ const MyService = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validate()) {
-      dispatch(updateService({ _id: selectedService._id, formData }))
-        .then(() => {
-          dispatch(getUserServices());
-        })
-        .finally(() => {
-          setSelectedService(null); 
-          clearState(); 
-        });
-    }
+
+    dispatch(updateService({ _id: selectedService._id, formData }))
+      .then(() => {
+        dispatch(getUserServices());
+      })
+      .finally(() => {
+        setSelectedService(null);
+        clearState();
+      });
   };
 
   return (
@@ -105,10 +104,7 @@ const MyService = () => {
               placeholder="Service Price"
             />
             <button type="submit">Guardar cambios</button>
-            <button
-              type="button"
-              onClick={() => setSelectedService(null)}
-            >
+            <button type="button" onClick={() => setSelectedService(null)}>
               Cancelar
             </button>
           </form>
@@ -125,9 +121,7 @@ const MyService = () => {
               <button onClick={() => editService(service)}>
                 <img src={editarArchivo} alt="Editar" />
               </button>
-              <button
-                onClick={() => selectServiceToDelete(service)} 
-              >
+              <button onClick={() => selectServiceToDelete(service)}>
                 Eliminar
               </button>
             </div>
@@ -139,10 +133,16 @@ const MyService = () => {
 
       {selectedServiceDelete && (
         <div>
-          <button className="confirm-delete-button" onClick={handleDeleteService}>
+          <button
+            className="confirm-delete-button"
+            onClick={handleDeleteService}
+          >
             Confirmar eliminación
           </button>
-          <button className="cancel-delete-button" onClick={() => setSelectedServiceDelete(null)}>
+          <button
+            className="cancel-delete-button"
+            onClick={() => setSelectedServiceDelete(null)}
+          >
             Cancelar eliminación
           </button>
         </div>
