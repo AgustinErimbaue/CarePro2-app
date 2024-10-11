@@ -15,17 +15,15 @@ const Profile = () => {
 
   useEffect(() => {
     dispatch(getLoggedUser());
-    if (user.isServiceProvider === false) {
+    if (user && user.isServiceProvider === false) {
       dispatch(getUserProfile());
     }
   }, [dispatch]);
 
-  // Maneja la selección de archivo
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
 
-  // Maneja la subida de la imagen
   const handleUpload = () => {
     if (selectedFile) {
       dispatch(uploadProfileImage(selectedFile)); 
@@ -38,13 +36,18 @@ const Profile = () => {
       <div className="info-container">
         <div className="img-profile">
           <img
-            src={`http://localhost:8080/${user.profileImage}`}
+            src={
+              user?.profileImage
+                ? `http://localhost:8080/${user.profileImage}`
+                : "/default-profile.png" 
+            }
             alt="Profile"
           />
 
-         
           <input type="file" onChange={handleFileChange} />
-          <button onClick={handleUpload}>Subir nueva imagen</button>
+          <button onClick={handleUpload} disabled={!selectedFile}>
+            Subir nueva imagen
+          </button>
         </div>
         <div className="info">
           <div className="name-user">
@@ -75,34 +78,32 @@ const Profile = () => {
             </p>
           </div>
         </div>
-        {user.isServiceProvider === false ? (
-          <>
-            <div className="my-service">
-              <h2 className="service-title">Servicios Contratados</h2>
-              {contract && contract.length > 0 ? (
-                <ul className="service-list">
-                  {contract.map((c) => (
-                    <li key={c._id} className="service-item">
-                      <h3 className="service-name">{c.service.title}</h3>
-                      <p className="service-description">
-                        {c.service.description}
-                      </p>
-                      <p className="service-price">
-                        Precio: ${c.service.price}
-                      </p>
-                      <p className="service-date">
-                        Fecha de Inicio:{" "}
-                        {new Date(c.startDate).toLocaleDateString()}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p>No tienes servicios contratados.</p>
-              )}
-            </div>
-          </>
-        ) : null}{" "}
+        {user?.isServiceProvider === false ? (
+          <div className="my-service">
+            <h2 className="service-title">Servicios Contratados</h2>
+            {contract && contract.length > 0 ? (
+              <ul className="service-list">
+                {contract.map((c) => (
+                  <li key={c._id} className="service-item">
+                    <h3 className="service-name">{c.service.title}</h3>
+                    <p className="service-description">
+                      {c.service.description}
+                    </p>
+                    <p className="service-price">
+                      Precio: ${c.service.price}
+                    </p>
+                    <p className="service-date">
+                      Fecha de Inicio:{" "}
+                      {new Date(c.startDate).toLocaleDateString()}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>No tienes servicios contratados.</p>
+            )}
+          </div>
+        ) : null}
       </div>
     </div>
   );

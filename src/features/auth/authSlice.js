@@ -4,6 +4,9 @@ import authService from "./authService";
 const initialState = {
   user: JSON.parse(localStorage.getItem("user")) || null,
   token: localStorage.getItem("token") || "",
+  isLoading: false,
+  isSuccess: false,
+  error: null,
 };
 
 export const register = createAsyncThunk("auth/register", async (user) => {
@@ -78,11 +81,16 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
       })
-
-      .addCase(logout.fulfilled, (state) => {
-        (state.user = null), (state.token = null), localStorage.clear();
+      .addCase(getLoggedUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.error = action.payload;
       })
-
+      .addCase(logout.fulfilled, (state) => {
+        state.user = null;
+        state.token = null;
+        localStorage.clear();
+      })
       .addCase(uploadProfileImage.pending, (state) => {
         state.isLoading = true;
       })
@@ -101,4 +109,5 @@ export const authSlice = createSlice({
       });
   },
 });
+
 export default authSlice.reducer;
