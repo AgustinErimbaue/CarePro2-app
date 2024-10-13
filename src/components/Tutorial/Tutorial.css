@@ -1,0 +1,55 @@
+.how-it-works {
+    background-color: #f9f9f9; 
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    max-width: 800px;
+    margin: 0 auto; 
+    font-family: 'Roboto', sans-serif; 
+  }
+  
+  .how-it-works h2 {
+    font-size: 2rem;
+    color: #2c3e50; 
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .how-it-works section {
+    margin-bottom: 30px; 
+  }
+  
+  .how-it-works h3 {
+    font-size: 1.5rem;
+    color: #2980b9; 
+    margin-bottom: 10px;
+  }
+  
+  .how-it-works p {
+    font-size: 1rem;
+    color: #555; 
+    line-height: 1.6;
+  }
+  
+  .how-it-works strong {
+    color: #e74c3c; 
+  }
+  
+  @media (max-width: 768px) {
+    .how-it-works {
+      padding: 20px; 
+    }
+  
+    .how-it-works h2 {
+      font-size: 1.75rem;
+    }
+  
+    .how-it-works h3 {
+      font-size: 1.25rem;
+    }
+  
+    .how-it-works p {
+      font-size: 0.95rem;
+    }
+  }
+  

@@ -16,7 +16,7 @@ const Register = () => {
     repeatPassword: "",
     phoneNumber: "",
     address: "",
-    isServiceProvider: false, // Valor booleano inicial
+    isServiceProvider: false,
   });
 
   const [btnDisabled, setBtnDisabled] = useState(true);
@@ -30,7 +30,7 @@ const Register = () => {
     repeatPassword: "",
     phoneNumber: "",
     address: "",
-    isServiceProvider: false, // Iniciar como booleano
+    isServiceProvider: false,
   };
 
   const validateForm = () => {
@@ -82,7 +82,7 @@ const Register = () => {
     const { name, value, type, checked } = e.target;
     setData({
       ...data,
-      [name]: type === "checkbox" ? checked : value, // Manejar checkbox correctamente
+      [name]: type === "checkbox" ? checked : value, 
     });
   };
 
@@ -92,7 +92,7 @@ const Register = () => {
       `Enviando datos... Nombre: ${data.name}, Email: ${data.email}, ¿Ofrecer servicio?: ${data.isServiceProvider}`
     );
 
-    // Aquí ya estamos enviando el dato como booleano
+   
     dispatch(register(data));
     clearState();
     setTimeout(() => {
