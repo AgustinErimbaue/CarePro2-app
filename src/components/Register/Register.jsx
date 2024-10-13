@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "./Registro.css";
+import "./Register.css"
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { register } from "../../features/auth/authSlice";
 
-const Registro = () => {
+const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -173,4 +173,4 @@ const Registro = () => {
   );
 };
 
-export default Registro;
+export default Register;
