@@ -5,9 +5,10 @@ import Tutorial from "./components/Tutorial/Tutorial";
 import Login from "./components/Login/Login";
 import Profile from "./components/Profile/Profile";
 import Service from "./components/Service/Service";
-import MyService from "./components/myService/myService";
 import Contact from "./components/Contact/Contact";
 import Register from "./components/Register/Register";
+import MyService from "./components/MyService/MyService";
+
 function App() {
   return (
     <>
@@ -19,9 +20,9 @@ function App() {
           <Route path="/Contacto" element={<Contact />} />
           <Route path="/Registro" element={<Register />} />
           <Route path="/Login" element={<Login />} />
-          <Route path="/Perfil" element={<Profile />} />
-          <Route path="/Servicio" element={<Service />} />
-          <Route path="/MiServicio" element={<MyService />} />
+          <Route path="/Profile" element={<Profile />} />
+          <Route path="/Service" element={<Service />} />
+          <Route path="/MyService" element={<MyService />} />
         </Routes>
       </BrowserRouter>
     </>
