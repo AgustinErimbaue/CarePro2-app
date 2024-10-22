@@ -39,7 +39,7 @@ li .link:hover {
 
 li a:visited,
 li .link:visited {
-  color: #333; /
+  color: #333;
 }
 
 @media (max-width: 768px) {
