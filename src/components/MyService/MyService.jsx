@@ -7,7 +7,7 @@ import {
   deleteService,
 } from "../../features/provision/provisionSlice";
 import editarArchivo from "../../assets/editar-archivo.png";
-import MyServiceForm from "../MyServiceForm/MyServiceForm";
+import MyServiceForm from "../MyServiceForm/MyServiceForm.jsx";
 
 
 const MyService = () => {
