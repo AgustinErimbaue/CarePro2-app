@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "http://localhost:8080";
+const API_URL = "https://care-pro-backend.onrender.com";
 
 const hireService = async (service) => {
   const token = localStorage.getItem("token");
