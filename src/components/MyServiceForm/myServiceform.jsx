@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createService,getUserServices } from "../../features/provision/provisionSlice";
+import {
+  createService,
+  getUserServices,
+} from "../../features/provision/provisionSlice";
 
 const MyServiceForm = () => {
-  
   const dispatch = useDispatch();
 
   const initialState = { title: "", description: "", price: 0, category: "" };
@@ -29,23 +31,21 @@ const MyServiceForm = () => {
 
     setErrors(tempErrors);
     return Object.keys(tempErrors).length === 0;
-  }
-  
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
       console.log(`Se creó el servicio`);
       dispatch(createService(data))
         .then(() => {
-          dispatch(getUserServices()); 
+          dispatch(getUserServices());
         })
         .finally(() => {
-          clearState(); 
+          clearState();
         });
     }
   };
-
-  
 
   return (
     <form>
