@@ -84,3 +84,34 @@
   text-align: center;
   margin-bottom: 20px;
 }
+
+@media (max-width: 768px) {
+  .service-item {
+    width: 100%;
+    min-height: 300px;
+    margin-bottom: 20px;
+  }
+
+  .services-list {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .service-title {
+    font-size: 20px;
+  }
+
+  .service-description {
+    font-size: 14px;
+  }
+
+  .service-price {
+    font-size: 16px;
+  }
+
+  .hire-button,
+  .confirm-button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}

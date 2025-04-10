@@ -23,8 +23,8 @@ const Header = () => {
   };
 
   return (
-    <div>
-      <ul>
+    <div className="header-container">
+      <ul className="header-nav">
         <li>
           <Link to="/">Inicio</Link>
         </li>

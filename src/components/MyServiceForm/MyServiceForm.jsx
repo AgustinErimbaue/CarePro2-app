@@ -4,7 +4,7 @@ import {
   createService,
   getUserServices,
 } from "../../features/provision/provisionSlice";
-
+import "./MyServiceForm.css";
 const MyServiceForm = () => {
   const dispatch = useDispatch();
 
@@ -48,58 +48,66 @@ const MyServiceForm = () => {
   };
 
   return (
-    <form>
-      <div>
-        <input
-          type="text"
-          placeholder="Ingrese título del servicio"
-          value={data.title}
-          name="title"
-          onChange={handleInputChange}
-        />
-        {errors.title && <span style={{ color: "red" }}>{errors.title}</span>}
+    <>
+      <div className="form-container-1">
+        <form>
+          <div>
+            <input
+              type="text"
+              placeholder="Ingrese título del servicio"
+              value={data.title}
+              name="title"
+              onChange={handleInputChange}
+            />
+            {errors.title && (
+              <span style={{ color: "red" }}>{errors.title}</span>
+            )}
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Ingrese descripción del servicio"
+              value={data.description}
+              name="description"
+              onChange={handleInputChange}
+            />
+            {errors.description && (
+              <span style={{ color: "red" }}>{errors.description}</span>
+            )}
+          </div>
+          <div>
+            <input
+              type="number"
+              placeholder="Ingrese precio"
+              value={data.price}
+              name="price"
+              onChange={handleInputChange}
+            />
+            {errors.price && (
+              <span style={{ color: "red" }}>{errors.price}</span>
+            )}
+          </div>
+          <div>
+            <select
+              name="category"
+              value={data.category}
+              onChange={handleInputChange}
+            >
+              <option value="">Seleccione una categoría</option>
+              <option value="Cuidados de perros">Cuidados de perros</option>
+              <option value="Paseo de perros">Paseo de perros</option>
+              <option value="Limpieza de Casa">Limpieza de Casa</option>
+            </select>
+            {errors.category && (
+              <span style={{ color: "red" }}>{errors.category}</span>
+            )}
+          </div>
+          <button type="submit" onClick={handleSubmit}>
+            Agregar servicio
+          </button>
+        </form>
       </div>
-      <div>
-        <input
-          type="text"
-          placeholder="Ingrese descripción del servicio"
-          value={data.description}
-          name="description"
-          onChange={handleInputChange}
-        />
-        {errors.description && (
-          <span style={{ color: "red" }}>{errors.description}</span>
-        )}
-      </div>
-      <div>
-        <input
-          type="number"
-          placeholder="Ingrese precio"
-          value={data.price}
-          name="price"
-          onChange={handleInputChange}
-        />
-        {errors.price && <span style={{ color: "red" }}>{errors.price}</span>}
-      </div>
-      <div>
-        <select
-          name="category"
-          value={data.category}
-          onChange={handleInputChange}
-        >
-          <option value="">Seleccione una categoría</option>
-          <option value="Cuidados de perros">Cuidados de perros</option>
-          <option value="Paseo de perros">Paseo de perros</option>
-          <option value="Limpieza de Casa">Limpieza de Casa</option>
-        </select>
-        {errors.category && (
-          <span style={{ color: "red" }}>{errors.category}</span>
-        )}
-      </div>
-      <button type="submit" onClick={handleSubmit}>
-        Agregar servicio
-      </button>
-    </form>
+    </>
   );
 };
 

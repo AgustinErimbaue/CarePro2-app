@@ -1,12 +1,10 @@
-
-div {
+.header-container {
   background-color: #f8f9fa;
   padding: 10px 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-
-ul {
+.header-nav {
   list-style: none;
   display: flex;
   justify-content: space-around;
@@ -16,38 +14,35 @@ ul {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-
-li {
+.header-nav li {
   font-size: 16px;
   font-weight: bold;
 }
 
-
-li a,
-li .link {
+.header-nav li a,
+.header-nav li .link {
   text-decoration: none;
-  color: #333; 
-  transition: color 0.3s ease; 
+  color: #333;
+  transition: color 0.3s ease;
 }
 
-
-li a:hover,
-li .link:hover {
-  color: #007bff; 
-  text-decoration: underline; 
+.header-nav li a:hover,
+.header-nav li .link:hover {
+  color: #007bff;
+  text-decoration: underline;
 }
 
-li a:visited,
-li .link:visited {
+.header-nav li a:visited,
+.header-nav li .link:visited {
   color: #333;
 }
 
 @media (max-width: 768px) {
-  ul {
+  .header-nav {
     flex-direction: column;
   }
 
-  li {
+  .header-nav li {
     margin-bottom: 10px;
   }
 }

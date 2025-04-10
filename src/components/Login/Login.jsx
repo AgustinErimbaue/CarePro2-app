@@ -12,9 +12,9 @@ const Login = () => {
     password: "",
   };
   const [formData, setFormData] = useState(initialState);
-  const [errors, setErrors] = useState("");
+  const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
-  
+
   const dispatch = useDispatch();
 
   const { email, password } = formData;
@@ -33,7 +33,6 @@ const Login = () => {
     const errors = {};
     let isValid = true;
 
-   
     if (!email) {
       errors.email = "El correo electrónico es obligatorio.";
       isValid = false;
@@ -42,7 +41,6 @@ const Login = () => {
       isValid = false;
     }
 
-   
     if (!password) {
       errors.password = "La contraseña es obligatoria.";
       isValid = false;
@@ -72,30 +70,34 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <input
-          type="email"
-          placeholder="Correo electrónico"
-          name="email"
-          value={email}
-          onChange={handleInputChange}
-        />
-        {errors.email && <p className="error-message">{errors.email}</p>}
-      </div>
-      <div>
-        <input
-          type="password"
-          placeholder="Contraseña"
-          name="password"
-          value={password}
-          onChange={handleInputChange}
-        />
-        {errors.password && <p className="error-message">{errors.password}</p>}
-      </div>
-      <button type="submit">Login</button>
-      {message && <p className="message">{message}</p>}
-    </form>
+    <div className="login-container">
+      <form onSubmit={handleSubmit}>
+        <div>
+          <input
+            type="email"
+            placeholder="Correo electrónico"
+            name="email"
+            value={email}
+            onChange={handleInputChange}
+          />
+          {errors.email && <p className="error-message">{errors.email}</p>}
+        </div>
+        <div>
+          <input
+            type="password"
+            placeholder="Contraseña"
+            name="password"
+            value={password}
+            onChange={handleInputChange}
+          />
+          {errors.password && (
+            <p className="error-message">{errors.password}</p>
+          )}
+        </div>
+        <button type="submit">Login</button>
+        {message && <p className="message">{message}</p>}
+      </form>
+    </div>
   );
 };
 

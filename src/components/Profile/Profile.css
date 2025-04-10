@@ -3,14 +3,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 350px;
-  margin: 50px auto;
-  padding: 20px;
+  width: 380px;
+  margin: 60px auto;
+  padding: 25px;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 10px;
   background-color: #f9f9f9;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
 }
 
 .info-container {
@@ -30,42 +30,42 @@
 
 .img-profile img {
   border-radius: 50%;
-  width: 120px; 
-  height: 120px;
+  width: 130px; 
+  height: 130px;
   object-fit: cover;
-  border: 2px solid #ddd; 
+  border: 3px solid #ddd;
   transition: all 0.3s ease;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .img-profile img:hover {
   transform: scale(1.1); 
-  border-color: #3498db; 
+  border-color: #3498db;
 }
 
 .info {
-  margin-top: 20px;
+  margin-top: 25px;
   text-align: center;
 }
 
 .name-user h3 {
-  margin: 5px 0;
-  font-size: 18px;
+  margin: 8px 0;
+  font-size: 20px;
   color: #333;
 }
 
 .rate-user {
-  margin: 10px 0;
+  margin: 12px 0;
 }
 
 .filled-star,
 .empty-star {
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .extra-info p {
-  margin: 5px 0;
-  font-size: 16px;
+  margin: 7px 0;
+  font-size: 17px;
   color: #555;
 }
 
@@ -74,20 +74,20 @@
 }
 
 .my-service {
-  margin-top: 20px;
-  padding: 15px;
+  margin-top: 25px;
+  padding: 18px;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 10px;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
 }
 
 .service-title {
-  font-size: 22px;
+  font-size: 24px;
   color: #333;
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
 }
 
 .service-list {
@@ -97,34 +97,35 @@
 
 .service-item {
   border: 1px solid #e0e0e0;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 10px 0;
-  transition: background-color 0.3s;
-  min-height: 100px;
+  border-radius: 6px;
+  padding: 12px;
+  margin: 12px 0;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  min-height: 110px;
 }
 
 .service-item:hover {
   background-color: #f7f7f7;
+  transform: scale(1.02);
 }
 
 .service-name {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   color: #2c3e50;
 }
 
 .service-description {
-  font-size: 14px;
+  font-size: 16px;
   color: #7f8c8d;
 }
 
 .service-price {
-  font-size: 16px;
+  font-size: 18px;
   color: #27ae60;
 }
 
 .service-date {
-  font-size: 14px;
+  font-size: 16px;
   color: #7f8c8d;
 }

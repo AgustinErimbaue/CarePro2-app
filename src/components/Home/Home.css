@@ -1,80 +1,127 @@
 .hero-section {
-    background-image: url('hero-background.jpg'); 
-    background-size: cover;
-    background-position: center;
-    padding: 100px 20px;
-    text-align: center;
-    color: #333; 
+  background-image: url('hero-background.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 120px 20px; 
+  text-align: center;
+  color: #fff; 
+  position: relative; 
+}
+
+.hero-section h1 {
+  font-size: 48px; 
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 20px;
+  color: #fff; 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.hero-section p {
+  font-size: 20px; 
+  margin-bottom: 30px;
+  color: #f1f1f1; 
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); 
+}
+
+.hero-cta-button {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 30px;
+  font-size: 20px;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.3s ease; 
+}
+
+.hero-cta-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05); 
+}
+
+.services-section {
+  padding: 80px 20px;
+  background-color: #f9f9f9; 
+  text-align: center;
+}
+
+.services-section h2 {
+  font-size: 32px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.services-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px; 
+}
+
+.service-item {
+  width: 100%;
+  max-width: 320px; 
+  margin-bottom: 30px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-item:hover {
+  transform: translateY(-5px); 
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
+}
+
+.service-item img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.service-item h3 {
+  font-size: 24px;
+  margin: 15px 0 10px;
+  color: #333;
+}
+
+.service-item p {
+  font-size: 16px;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 80px 20px; 
   }
-  
+
   .hero-section h1 {
-    font-size: 36px;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    margin-bottom: 20px;
-    color: #333; 
+    font-size: 36px; 
   }
-  
+
   .hero-section p {
-    font-size: 18px;
-    margin-bottom: 30px;
-    color: #555; 
-  }
-  
-  .cta-button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    font-size: 18px;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none; 
-    cursor: pointer;
-    display: inline-block;
-    text-align: center;
-  }
-  
-  .cta-button:hover {
-    background-color: #0056b3;
-  }
-  
-  
-  
-  .services-section {
-    padding: 50px 20px;
-    text-align: center;
-  }
-  
-  .services-section h2 {
-    font-size: 28px;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    margin-bottom: 40px;
-    color: #333; 
-  }
-  
-  .services-list {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-  }
-  
-  .service-item {
-    width: 300px;
-    margin-bottom: 30px;
-  }
-  
-  .service-item img {
-    width: 100%;
-    border-radius: 10px;
-  }
-  
-  .service-item h3 {
-    font-size: 22px;
-    margin: 15px 0 10px;
-    color: #333; 
-  }
-  
-  .service-item p {
     font-size: 16px;
-    color: #555; 
   }
-  
+
+  .hero-cta-button {
+    font-size: 18px;
+    padding: 10px 20px; 
+  }
+
+  .services-section {
+    padding: 60px 20px; 
+  }
+
+  .services-list {
+    justify-content: center; 
+  }
+
+  .service-item {
+    width: 100%;
+    max-width: 280px;
+  }
+}
