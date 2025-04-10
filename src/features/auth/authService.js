@@ -1,6 +1,7 @@
 import axios from "axios";
 const API_URL = "https://care-pro-backend.onrender.com";
 
+
 const register = async (user) => {
   try {
     const res = await axios.post(`${API_URL}/users/`, user);
@@ -49,6 +50,7 @@ const getLoggedUser = async () => {
   }
 };
 
+
 const logout = async () => {
   const token = localStorage.getItem("token");
 
@@ -76,14 +78,18 @@ const uploadProfileImage = async (file) => {
   }
 
   const formData = new FormData();
-  formData.append("profileImage", file); 
+  formData.append("profileImage", file);
 
   try {
-    const res = await axios.put(`${API_URL}/users/upload-profile-image`, formData, {
-      headers: {
-        Authorization: token, 
-      },
-    });
+    const res = await axios.put(
+      `${API_URL}/users/upload-profile-image`,
+      formData,
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
 
     return res.data;
   } catch (error) {
