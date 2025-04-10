@@ -82,13 +82,16 @@ const MyServiceForm = () => {
         {errors.price && <span style={{ color: "red" }}>{errors.price}</span>}
       </div>
       <div>
-        <input
-          type="text"
-          placeholder="Ingrese categoría de servicio"
-          value={data.category}
+        <select
           name="category"
+          value={data.category}
           onChange={handleInputChange}
-        />
+        >
+          <option value="">Seleccione una categoría</option>
+          <option value="Cuidados de perros">Cuidados de perros</option>
+          <option value="Paseo de perros">Paseo de perros</option>
+          <option value="Limpieza de Casa">Limpieza de Casa</option>
+        </select>
         {errors.category && (
           <span style={{ color: "red" }}>{errors.category}</span>
         )}
